@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mashtruesi</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <h1 class="logo">Mashtruesi</h1>
+      <button id="navStats" class="link-btn" type="button">Statistika</button>
+    </header>
+
+    <!-- SETUP -->
+    <section id="screen-setup" class="screen">
+      <h2>Lojtaret</h2>
+      <p class="hint-text">Shto te pakten 4 lojtare.</p>
+      <div class="row">
+        <input id="playerInput" type="text" placeholder="Emri i lojtarit" maxlength="20" autocomplete="off">
+        <button id="addPlayer" class="btn" type="button">Shto</button>
+      </div>
+      <ul id="playerList" class="player-list"></ul>
+
+      <h2>Kategoria</h2>
+      <select id="categorySelect" class="select"></select>
+      <p id="categoryPreview" class="hint-text"></p>
+
+      <h2>Opsione</h2>
+      <label class="opt">
+        <span>Numri i mashtruesve</span>
+        <select id="imposterCount" class="select small">
+          <option value="">Automatik</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+        </select>
+      </label>
+      <label class="opt">
+        <span>Ndihmese per mashtruesin</span>
+        <input id="hintEnabled" type="checkbox" checked>
+      </label>
+      <label class="opt">
+        <span>Kohemates per raundin</span>
+        <input id="timerEnabled" type="checkbox">
+      </label>
+      <label class="opt">
+        <span>Kohezgjatja</span>
+        <select id="timerDuration" class="select small">
+          <option value="60">1 min</option>
+          <option value="120">2 min</option>
+          <option value="180" selected>3 min</option>
+          <option value="300">5 min</option>
+        </select>
+      </label>
+
+      <details class="advanced">
+        <summary>Te avancuara</summary>
+        <label class="opt column">
+          <span>Sa rralle mashtruesi flet i pari:
+            <strong id="weightLabel">0.25&times;</strong></span>
+          <input id="weight" type="range" min="0.05" max="1" step="0.05" value="0.25">
+          <small class="hint-text">Me e ulet = me pak gjasa qe mashtruesi te flase i pari (rounde me te gjata).</small>
+        </label>
+      </details>
+
+      <details class="advanced">
+        <summary>Shto fjale te re ne kategori</summary>
+        <div class="row">
+          <input id="newWordText" type="text" placeholder="Fjala" maxlength="40" autocomplete="off">
+        </div>
+        <div class="row">
+          <input id="newWordHint" type="text" placeholder="Ndihmese (opsionale)" maxlength="60" autocomplete="off">
+          <button id="addWordBtn" class="btn" type="button">Shto fjale</button>
+        </div>
+        <p id="addWordMsg" class="hint-text"></p>
+      </details>
+
+      <button id="startGame" class="btn primary big" type="button">Fillo lojen</button>
+      <p id="setupError" class="error"></p>
+    </section>
+
+    <!-- HANDOFF -->
+    <section id="screen-handoff" class="screen hidden">
+      <p class="muted">Jepja telefonin</p>
+      <h2 id="handoffName" class="big-name"></h2>
+      <p class="muted">Vetem ky lojtar duhet te shohe ekranin.</p>
+      <button id="revealBtn" class="btn primary big" type="button">Shiko fjalen</button>
+    </section>
+
+    <!-- REVEAL -->
+    <section id="screen-reveal" class="screen hidden">
+      <div id="revealCard" class="reveal-card">
+        <p id="revealRole" class="role"></p>
+        <h2 id="revealWord" class="big-name"></h2>
+        <p id="revealHint" class="hint-text"></p>
+      </div>
+      <button id="hideBtn" class="btn primary big" type="button">E pashe, fshihe</button>
+    </section>
+
+    <!-- ROUND START -->
+    <section id="screen-round" class="screen hidden">
+      <h2>Te gjithe i pane fjalet</h2>
+      <p class="muted">Fillon te flase:</p>
+      <h2 id="firstSpeaker" class="big-name"></h2>
+      <p id="roundTimer" class="big-name accent hidden"></p>
+      <p class="hint-text">Bisedoni me radhe. Gjeni mashtruesin!</p>
+      <button id="endRound" class="btn primary big" type="button">Perfundo lojen</button>
+    </section>
+
+    <!-- CATCH ASK -->
+    <section id="screen-catch" class="screen hidden">
+      <h2>A e gjeti grupi mashtruesin?</h2>
+      <div class="row center">
+        <button id="caughtYes" class="btn primary big" type="button">Po</button>
+        <button id="caughtNo" class="btn big" type="button">Jo</button>
+      </div>
+    </section>
+
+    <!-- RESULT -->
+    <section id="screen-result" class="screen hidden">
+      <h2 id="resultVerdict"></h2>
+      <p class="muted">Fjala ishte:</p>
+      <h2 id="resultWord" class="big-name"></h2>
+      <p class="muted">Mashtruesi:</p>
+      <h2 id="resultImposters" class="big-name accent"></h2>
+      <h2>Renditja</h2>
+      <div id="scoreboardBody" class="stats-body"></div>
+      <div class="row center">
+        <button id="playAgain" class="btn primary big" type="button">Luaj perseri</button>
+        <button id="newGame" class="btn big" type="button">Loje e re</button>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section id="screen-stats" class="screen hidden">
+      <h2>Statistika</h2>
+      <div id="statsBody" class="stats-body"></div>
+      <div class="row center">
+        <button id="clearStats" class="btn big" type="button">Pastro historikun</button>
+        <button id="backFromStats" class="btn primary big" type="button">Kthehu</button>
+      </div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
