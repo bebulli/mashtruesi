@@ -5,21 +5,19 @@
 
 LIVE DEMO
 ---------
-No need to build anything to try it out - it's deployed and running at:
+No need to build anything, it's deployed and running at:
 
     https://mashtruesi-production.up.railway.app
 
-Grab a phone or laptop, add 4+ players, and play. See "HOW TO BUILD & RUN"
-below only if you want to run it locally instead.
+See "HOW TO BUILD & RUN" below only if you want to run it locally instead.
 
 
 WHAT IT IS
 ----------
 A pass-the-phone party game (4+ players). Everyone secretly gets the
 same word except the imposter(s), who instead get an optional hint.
-Players take turns describing the word; the group then votes on who the
-imposter is. The whole UI is in Albanian; all code, comments and Javadoc
-are in English.
+Players take turns describing the word; the group votes on who the
+imposter is. The whole UI is in Albanian; all code, comments are in English.
 
 Headline feature: the imposter ROLE is chosen fairly (uniform), but the
 speaking ORDER is biased so the imposter is LESS likely to be picked to
@@ -64,8 +62,8 @@ HOW TO PLAY
 1. Add at least 4 player names.
 2. Pick a category (Kafshe, Ushqime, Sporte, Vende, Profesione, ...).
 3. Optional: set imposter count (auto = 1, or 2 when 8+ players), turn
-   the hint on/off, and adjust how rarely the imposter speaks first.
-4. Pass the phone around. Each player privately taps to see their word
+   the hint on/off, and adjust the rarity of the imposter speaking first.
+4. Pass the screen. Each player privately taps to see their word
    (or that they are the imposter, with a hint).
 5. The app announces who speaks first. Discuss, then end the round and
    record whether the group caught the imposter.
