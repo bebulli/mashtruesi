@@ -3,6 +3,16 @@
   CS 305 Advanced Java - Semester Project
 ================================================================
 
+LIVE DEMO
+---------
+No need to build anything to try it out - it's deployed and running at:
+
+    https://mashtruesi-production.up.railway.app
+
+Grab a phone or laptop, add 4+ players, and play. See "HOW TO BUILD & RUN"
+below only if you want to run it locally instead.
+
+
 WHAT IT IS
 ----------
 A pass-the-phone party game (4+ players). Everyone secretly gets the
